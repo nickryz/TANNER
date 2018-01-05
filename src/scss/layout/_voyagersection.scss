@@ -1,0 +1,135 @@
+.voyagersection {
+    padding: 125px 0 195px 0;
+
+    @include tablet-pr {
+        padding: 40px 0 20px 0;
+    }
+}
+    .section__wrap {
+        display: flex;
+
+        @include tablet-pr {
+            flex-wrap: wrap;
+        }
+    }
+        
+        .photo__wrap {
+            font-size: 0;
+
+            @include tablet-ls {
+                max-width: 700px;
+            }
+            
+            @include tablet-pr {
+                max-width: 100%;
+            }
+
+            .voyagersection__img {
+                width: 100%;
+            }
+        }
+    
+    
+        .descr__container {
+            position: relative;
+            @include tablet-pr {
+                width: 100%;
+            }
+        }
+            .descr__wrap {
+                position: absolute;
+                top: 47%;
+                transform: translate(-50%, -50%);
+                width: 564px;
+                font-size: 0;
+                left: 10px;
+                border: 2px solid $AccentColor;
+
+                @include tablet-pr {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    transform: none;
+                    width: 100%;
+                }
+            }
+                .descr__first-column,
+                .descr__second-column {
+                    display: inline-block;
+                    width: 50%;
+                    font-size: 32px;
+                    vertical-align: middle;
+                    
+                    @include tablet-pr {
+                        width: 100%;
+                    }
+                }
+
+                .descr__first-column {
+                    position: relative;
+
+                    @include tablet-pr {
+                        background: $DarkPriceBorder;
+                    }
+                }
+                    .first-column__wrap {
+                        position: absolute;
+                        transform: translateY(-67%);
+                        width: 500px;
+                        text-align: right;
+                        right: 0;
+
+                        @include tablet-pr {
+                            position: relative;
+                            transform: none;
+                            width: 100%;
+                            text-align: center;
+                        }
+
+                        .descr__title {
+                            font-family: $mainFont;
+                            color:  #ffffff;
+                            font-size: 1.914rem;
+                            font-weight: 700;
+                            text-shadow: 0px 26px 81px rgba(0, 15, 26, 0.6);
+                            text-transform: uppercase;
+                            letter-spacing: 8.5px;
+                            margin: 0 30px 0 0;
+
+                            @include tablet-pr {
+                                font-size: 1.1rem;
+                                padding: 5px 0 0 0;
+                                margin: 0;
+                            }
+                        }
+                        
+                        .descr__subtitle {
+                            font-family: $mainFont;
+                            color:  #ffffff;
+                            font-size: 0.849rem;
+                            font-weight: 400;
+                            text-transform: uppercase;
+                            margin: 10px 20px 0 0;
+
+                            @include tablet-pr {
+                                margin: 5px 0;
+                            }
+                        }
+                    }
+
+                .descr__second-column {
+                    padding: 37px 55px 40px 15px;
+
+                     @include tablet-pr {
+                        padding: 20px;
+                    }
+
+                    .descr__text {
+                        font-family: $mainFont;
+                        color:  $MainTextLight;
+                        font-size: 0.572rem;
+                        font-weight: 400;
+                        line-height: 2.75;
+                        margin: 0;
+                    }
+                }

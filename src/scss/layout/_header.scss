@@ -1,0 +1,107 @@
+.header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+    display: none;
+}    
+
+    .container {
+        @include container;
+    }
+
+        .header__wrap {
+            display: flex;
+            align-items: center;
+        }
+            .header__logo {
+                position: relative;
+            }    
+
+                .logo__link {
+                    width: 140px;
+                    height: 140px;
+                    background: $AccentColor;
+                    border-radius: 50%;
+                    display: flex;
+                    margin-top: -44px;
+                    margin-left: 7px;
+                    
+                    .logo__img {
+                        margin: 62px auto auto;
+                        width: 98px;
+                        height: 39px;
+                    }
+                }
+            .header__nav {
+            }
+
+                .header__nav-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0 0 0 90px;
+                }
+                    .nav__item {
+                        margin-left: 64px;
+                        margin-bottom: 12px;
+
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                    }
+                        .nav__link {
+                            font-family: $secondFont;
+                            text-decoration: none;
+                            font-size: 0.59rem;
+                            letter-spacing: 1px;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            color: black;
+                            position: relative;
+                            transition: color 0.3s ease-in-out;
+                            
+                            &--light {
+                                color: white;
+                                transition: color 0.3s ease-in-out;
+                                text-shadow: 0 0 3px black;
+                            }
+
+                            &:hover {
+                                color: $AccentColor;
+                            }
+                           
+                                &:before, &:after {
+                                    content: '';
+                                    background: $AccentColor;
+                                    position: absolute;
+                                }
+                                &:before {
+                                    width: 0px;
+                                    height: 2px;
+                                    left: calc(-9px - 24px);
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    transition: width 0.3s ease-in-out;
+                                }
+                                &:hover:before {
+                                    width: 24px;
+                                }
+
+                                &:after {
+                                    width: 0px;
+                                    height: 0px;
+                                    border-radius: 50%;
+                                    left: calc(13px + 100%);
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    transition: width 0.3s ease-in-out, 
+                                                height 0.3s ease-in-out;
+                                }
+
+                                &:hover:after {
+                                    width: 6px;
+                                    height: 6px;
+                                }
+                        }

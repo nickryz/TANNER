@@ -1,0 +1,114 @@
+.gallerysection {
+    &--dark {
+        background: $DarkSection;
+    }
+}    
+    .gallerysection-wrap {
+        overflow: hidden;
+        position: relative;
+        height: 230px;
+    }
+        .gallerysection__gallery {
+            list-style: none;
+            font-size: 0;
+            width: 9999px;
+            padding: 0;
+            left: 0;
+            position: absolute;
+        }
+
+            .gallerysection__item {
+                display: inline-block;
+                margin: 0 0 0 25px;
+
+                &--active {
+                    width: 366px;
+                }
+
+                > img {
+                    width: 100%;
+                }
+
+            }
+
+
+    .controls__wrap {
+        padding: 10px 0 30px;
+        display: inline-block;
+        position: relative;
+        left: 60%;
+    }
+
+        .controls {
+            margin: 0 auto;
+            width: 134px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;      
+            position: relative;  
+        }
+
+            .number-window {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                box-shadow: 0px 0px 30px 0px rgba(0, 15, 26, 0.21);
+                display: flex;
+                background: whitesmoke;
+                z-index: 1; 
+                
+                span {
+                    font-family: $mainFont;
+                    color:  #000000;
+                    font-size: 1.568rem;
+                    font-weight: 700;
+                    margin: auto;
+                }
+            }
+
+            .controls__btn--left {
+                background: url(../img/gallery_1/compon/arrowhead-thin-outline-to-the-left.svg) center center no-repeat;
+            }
+
+            .controls__btn--right {
+                background: url(../img/gallery_1/compon/arrow-point-to-right.svg) center center no-repeat;
+            }
+
+            .controls__btn {
+                border: none;
+                background-size: cover;
+                width: 10px;
+                height: 16px;
+                z-index: 99;
+            }
+
+            .numbers__wrap {
+                position: absolute;
+            }
+
+                .numbers__list {
+                    list-style: none;
+                    display: flex;
+                    padding: 0;
+                    margin: 0;
+                }
+                    .numbers__item {
+                        margin: 0 22px 0 0;
+
+                        &:last-child {
+                            margin: 0 0 0 0;
+                        }
+
+                        &--active {
+                            margin: 0 90px;
+                        }
+
+                        > span {
+                            text-decoration: none;
+                            font-family: $mainFont;
+                            color:  rgba(135, 135, 135, 1);
+                            font-size: 0.691rem;
+                            font-weight: 700;
+                        }
+                    }
+        
