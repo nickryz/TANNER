@@ -37,7 +37,7 @@
        </header>
 
        <!-- TOP SECTION -->
-       
+
        <section class="topsection" id="#topsection">
            <div class="container">
                <div class="topsection__wrap">
@@ -47,36 +47,44 @@
                         <a href="#" class="topdescr__link">Gear UP</a>
                     </div>  
                    <div class="gallery-wrap">
-                        <button class="arrow arrow__left" data-topgallerybtn="left"></button>
+                        <button class="arrow arrow__left" id="topgalleryBtn_left"></button>
                         <ul class="gallery">
-                            <li class="gallery__item">
+                            <li class="gallery__item" data-topgallery="1">
                                 <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
                             </li>
-                            <li class="gallery__item">
+                            <li class="gallery__item" data-topgallery="2">
                                 <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
                             </li>
-                            <li class="gallery__item">
+                            <li class="gallery__item" data-topgallery="3">
+                                <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
+                            </li>
+                            <li class="gallery__item" data-topgallery="4">
+                                <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
+                            </li>
+                            <li class="gallery__item" data-topgallery="5">
                                 <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
                             </li>
                         </ul>
-                        <button class="arrow__right" data-topgallerybtn="right"></button>
+                        <button class="arrow__right" id="topgalleryBtn_right"></button>
                    </div>
                    
                    <!-- GALLERY SWICH -->
                    
                    <div class="swich__wrap">
                        <div class="arrow__wrap">
-                           <button class="arrow arrow__up"></button>
-                           <button class="arrow arrow__down"></button>
+                           <button class="arrow arrow__up" id="topgalleryBtn_up" data-topgallery="up"></button>
+                           <button class="arrow arrow__down" id="topgalleryBtn_down" data-topgallery="down"></button>
                        </div>
-                       <div class="swicher"><span>01</span></div>
-                       <ul class="swich__list">
-                           <li class="swich__number swich__number--active"><a href="#1" class="swich__link">01</a></li>
-                           <li class="swich__number"><a href="#2" class="swich__link">02</a></li>
-                           <li class="swich__number"><a href="#3" class="swich__link">03</a></li>
-                           <li class="swich__number"><a href="#4" class="swich__link">04</a></li>
-                           <li class="swich__number"><a href="#5" class="swich__link">05</a></li>
-                       </ul>
+                       <div class="swicher__numbers-wrap">    
+                            <div class="swicher" data-topgallery="swicher"><span>01</span></div>
+                            <ul class="swich__list">
+                                <li class="swich__number swich__number--active"><a href="#1" class="swich__link">01</a></li>
+                                <li class="swich__number"><a href="#2" class="swich__link">02</a></li>
+                                <li class="swich__number"><a href="#3" class="swich__link">03</a></li>
+                                <li class="swich__number"><a href="#4" class="swich__link">04</a></li>
+                                <li class="swich__number"><a href="#5" class="swich__link">05</a></li>
+                            </ul>
+                        </div>
                    </div>
                </div>
 

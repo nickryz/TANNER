@@ -6,7 +6,13 @@ window.addEventListener('DOMContentLoaded', init);
 function init () {
     
 
-// BURGER MENU
+/* 
+*
+*
+BURGER MENU 
+*
+*
+*/
 
 ;(function(){
     "use strict";
@@ -33,19 +39,26 @@ function init () {
             var currentClass = item.classList[0];
             item.classList.toggle(currentClass + action)
         })
-
-        document.body.style.overflowY = document.body.style.overflowY == '' ? 'hidden' : '' ;
-        
+        if (document.documentElement.clientWidth < 993) {
+            document.body.style.overflowY = document.body.style.overflowY == '' ? 'hidden' : '' ;
+        }
     }
 
 
 
-// SCROLL MENU 
+
+/*
+*
+*
+SCROLL MENU
+*
+*
+*/
 
 
-        var mainNavMenu = document.querySelector('.header__nav-list');
+    var mainNavMenu = document.querySelector('.header__nav-list');
 
-        mainNavMenu.addEventListener('click', scrollToSection);
+    mainNavMenu.addEventListener('click', scrollToSection);
 
         function scrollToSection(e) {
             e.preventDefault();
@@ -70,11 +83,14 @@ function init () {
             var scroll = setInterval(function () {
                 var currentPosition = window.pageYOffset;
                
-                if (scrollHeight >= sectionPosition + window.innerHeight) {
+                if (scrollHeight >= sectionPosition + window.innerHeight && sectionPosition > window.innerHeight) {
                     scrollTo(0, currentPosition + 50);
                     if (currentPosition >= sectionPosition) {
                         clearInterval(scroll);
                     }
+                } else if (sectionPosition <= window.innerHeight) {
+                    clearInterval(scroll);
+                    return;
                 } else {
                     scrollTo(0, currentPosition + 50)
                     if (currentPosition >= scrollHeight - window.innerHeight) {
@@ -83,9 +99,109 @@ function init () {
                 }
             }, 17);
         }
+
+
+/* 
+*
+*
+TOP GALLERY
+*
+*
+*/
+
+
+        var btnUp = document.querySelector('#topgalleryBtn_up');
+        var btnDown = document.querySelector('#topgalleryBtn_down');
+        var btnLeft = document.querySelector('#topgalleryBtn_left');      // when small display
+        var btnRight = document.querySelector('#topgalleryBtn_right');    // when small display   
+        var swicher = document.querySelector('.swicher');
+        var swichStep = swicher.offsetHeight/2;
+        var swichPosition = 1;
+        var currentSlide = document.querySelector('[data-topgallery="' + swichPosition + '"' + ']');
+        var slideWidth = currentSlide.offsetWidth;  
+        var slideList = currentSlide.parentElement;
+        var activeNumber = document.querySelector('[href^="#' + swichPosition + '"' + ']').parentElement;
+        var numberLegth = activeNumber.closest('ul').children.length;
         
+        
+        if (document.documentElement.clientWidth > 992) {
+            btnDown.addEventListener('click', mooveToPrevSlide);
+            btnUp.addEventListener('click', mooveToNextSlide);
+        } else {
+            btnLeft.addEventListener('click', mooveToNextSlide);
+            btnRight.addEventListener('click', mooveToPrevSlide);
+        }
+
+        // PREV
+
+        function mooveToPrevSlide() {
+            activeNumber = document.querySelector('[href="#' + swichPosition + '"' + ']').parentElement;
+            
+            moveDownSwich();
+            mooveSlide(); 
+        
+
+        // MOOVE SWICH DOWN
+
+            function moveDownSwich() { 
+
+                if (swichPosition < numberLegth && swichPosition !== numberLegth) {
+                    activeNumber.classList.remove('swich__number--active');
+                    
+                    activeNumber.nextElementSibling.classList.add('swich__number--active');
+                    swicher.style.transform = 'translate(0,' + swichStep * swichPosition + 'px' + ')';
+                    swicher.firstElementChild.innerHTML = '0' + ++swichPosition;
+                    
+                } else {
+                    swichPosition = 1;
+                    activeNumber.parentElement.firstElementChild.classList.add('swich__number--active');
+                    swicher.style.transform = 'translate(0,' + swichPosition + 'px' + ')';
+                    swicher.firstElementChild.innerHTML = '0' + swichPosition;
+                } 
+            }
+        }
+
+
+
+        function mooveToNextSlide() {
+        
+        
+            // MOOVE SWICH UP
+            
+            moveUpSwich();
+            mooveSlide();
+
+            function moveUpSwich() {
+            activeNumber = document.querySelector('[href^="#' + swichPosition + '"' + ']').parentElement;
+            if (swichPosition > 1) {
+                    --swichPosition;
+                    console.log(swichPosition);
+                    
+                    activeNumber.classList.remove('swich__number--active');
+                    activeNumber.previousElementSibling.classList.add('swich__number--active');
+                    swicher.style.transform = 'translate(0,' + swichStep * (swichPosition - 1) + 'px' + ')';
+                    swicher.firstElementChild.innerHTML = '0' + swichPosition;
+
+                } else {
+                    swichPosition = 5;
+                    activeNumber.classList.remove('swich__number--active');
+                    activeNumber.parentElement.lastElementChild.classList.add('swich__number--active');
+                    swicher.style.transform = 'translate(0,' + swichStep * (swichPosition -1) + 'px' + ')';
+                    swicher.firstElementChild.innerHTML = '0' + swichPosition;
+                } 
+            }
+        }
+
+
+        // MOOVE SLIDE
+
+        function mooveSlide() {
+            currentSlide = document.querySelector('[data-topgallery="' + swichPosition + '"' + ']');
+            slideList.style.transform = 'translate(' + -currentSlide.offsetWidth * (swichPosition - 1) + 'px' + ',0)';
+        }
+
+
     })(); 
-    
 }
 
 
@@ -94,17 +210,6 @@ function init () {
 
 
 
-
-
-    // var t;
-    // function animateScroll() {
-    //     var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-    //     if (top > 0) {
-    //         window.scrollBy(0, +50);
-    //         t = setTimeout('animateScroll()', 20);
-    //     } else clearTimeout(t);
-    //     return false;
-    // }
 
 
 
