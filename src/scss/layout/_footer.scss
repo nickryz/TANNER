@@ -3,9 +3,16 @@
     padding: 23px 0 16px 0;
 }
     .footer__wrap {
-        display: flex;
-        flex-wrap: wrap;
+        font-size: 0;
         padding: 0 59px 0 52px;
+
+        @include tablet-ls {
+            padding: 0 15px;
+        }
+
+        @include mobile {
+            padding: 0 15px;
+        }
     }
 
 
@@ -13,35 +20,56 @@
 
         .logo-column {
             width: 18%;
-        }
-            .copyright {
-                font-family: $secondFont;
-                color:  $MainTextDark;
-                font-size: 0.592rem;
-                font-weight: 400;
-                text-transform: uppercase;
-                margin: 0;
-                margin-top: 47px;
-                letter-spacing: 0;
+            display: inline-block;
+
+            @include mobile {
+                width: 100%;
             }
+        }
+            .img__wrap {
+                text-align: left;
+            }
+            
 
         // NAVIGATE
 
         .nav-column {
-            display: flex;
+            display: inline-flex;
             flex-direction: column;
-            align-items: flex-end;
-            justify-content: space-between;
             width: 35%;
+            vertical-align: top;
+
+            @include tablet-pr {
+                width: 82%;
+                align-items: center;
+            }
+            
+            @include mobile {
+                width: 100%;
+                margin-top: 20px; 
+            }
         }
             .nav__list {
                 display: flex;
                 list-style: none;
                 margin: 0;
                 padding: 0;
+                justify-content: flex-end;
+
+                &--footer {
+                    margin-bottom: 75px;
+
+                    @include tablet-pr {
+                        margin: 0 0 35px 0;
+                    }
+                }
             }
                 .nav__item--footer {
                     margin: 0 45px 0 0;
+
+                    @include mobile {
+                        margin: 0 30px 0 0; 
+                    }
 
                     &:last-child {
                         margin: 0 0 0 0;
@@ -75,7 +103,19 @@
 
         .address-column {
             padding: 0 0 0 84px;
+            vertical-align: top;
             width: 32%;
+            display: inline-block;
+
+            @include tablet-ls {
+                 width: 28%;
+            }
+            
+            @include tablet-pr {
+                padding: 0 0 0 10px;
+                margin: 35px 0;
+                width: 50%;
+            }
         }   
 
             .address {
@@ -102,6 +142,20 @@
 
         .subscribe-colum {
             width: 15%;
+            display: inline-block;
+            vertical-align: top;
+         
+            
+            @include tablet-pr {
+                width: 50%;
+                margin: 35px 0;
+            }
+
+            @media (max-width : 482px) {
+                width: 100%;
+                margin: 0 0 20px 0; 
+            }
+
         }
             .subscribe-title {
                 font-family: $mainFont;
@@ -122,12 +176,16 @@
             }
 
             .subscribe-input {
-                width: 120px;
+                width: 76%;
                 height: 20.5px;
                 vertical-align: middle;
-                font-size: 0.592rem;
+                font-size: 0.792rem;
                 font-family: $secondFont;
 
+                 @include tablet-pr {
+                    width: 40%;
+                }
+                
             }
 
             .subscribe-submit {
@@ -140,7 +198,15 @@
             }
             
 
-
+            .copyright {
+                font-family: $secondFont;
+                color:  $MainTextDark;
+                font-size: 0.552rem;
+                font-weight: 400;
+                text-transform: uppercase;
+                margin: 0;
+                letter-spacing: 0;
+            }
 
 
 

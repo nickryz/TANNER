@@ -2,8 +2,15 @@
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: 99;
-    display: none;
+    z-index: 10;
+    // display: none;
+
+    @include tablet-ls {
+        position: relative;
+    }
+
+    @include tablet-pr {
+    }
 }    
 
     .container {
@@ -13,6 +20,15 @@
         .header__wrap {
             display: flex;
             align-items: center;
+            position: relative;
+
+            @include tablet-ls {
+                background: white;
+            }
+
+            @include tablet-pr {
+                background: $AccentColor;
+            }
         }
             .header__logo {
                 position: relative;
@@ -26,14 +42,24 @@
                     display: flex;
                     margin-top: -44px;
                     margin-left: 7px;
+
+                     @include tablet-pr {
+                        margin-top: 0;
+                        height: auto;
+                    }
                     
                     .logo__img {
                         margin: 62px auto auto;
                         width: 98px;
                         height: 39px;
+
+                         @include tablet-pr {
+                            margin: 15px auto;
+                        }
                     }
                 }
             .header__nav {
+                
             }
 
                 .header__nav-list {
@@ -42,10 +68,41 @@
                     list-style: none;
                     padding: 0;
                     margin: 0 0 0 90px;
+
+                    @include tablet-pr {
+                        margin: 0;
+                        position: fixed;
+                        top: 0;
+                        right: 0;
+                        height: 100vh;
+                        max-width: 500px;
+                        width: 80%; 
+                        transform: translate(115%);
+                        margin: 0;
+                        background: grey;
+                        z-index: 10;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        transition: transform 0.5s ease-in-out;
+                        padding: 60px 0;
+                    }
+                    &--active {
+                        transform: translate(0);
+                    }
                 }
                     .nav__item {
                         margin-left: 64px;
                         margin-bottom: 12px;
+                            @include tablet-pr {
+                                margin: 0;
+                                width: 100%;
+
+                                &:active {
+                                    @include tablet-pr {
+                                        background: rgba(0,0,0,0.5);
+                                    }
+                                }
+                            }
 
                         &:first-child {
                             margin-left: 0;
@@ -61,21 +118,49 @@
                             color: black;
                             position: relative;
                             transition: color 0.3s ease-in-out;
+
+                            @include tablet-pr {
+                                display: block;
+                                width: 100%;
+                                padding: 30px 0 30px 50px;
+                                font-size: 1rem;
+                                color: white;
+                            }
+
+                           
                             
                             &--light {
                                 color: white;
                                 transition: color 0.3s ease-in-out;
                                 text-shadow: 0 0 3px black;
+
+                                 @include tablet-ls {
+                                    color: black;
+                                    text-shadow: none;
+                                }
+
+                                @include tablet-pr {
+                                    color: white;
+                                }
                             }
 
                             &:hover {
                                 color: $AccentColor;
+                                
+                                @include tablet-pr {
+                                    color: white;
+                                }
+                                
                             }
                            
                                 &:before, &:after {
                                     content: '';
                                     background: $AccentColor;
                                     position: absolute;
+
+                                    @include tablet-pr {
+                                        display: none;
+                                    }
                                 }
                                 &:before {
                                     width: 0px;

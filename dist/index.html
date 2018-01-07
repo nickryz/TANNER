@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+
    <main class="maincontent">
        
         <!-- HEADER -->
@@ -15,27 +16,29 @@
         <header class="header">
             <div class="container">
                 <div class="header__wrap">
+                    <div class="burger" data-burger="icon"></div>
                     <div class="header__logo">
                         <a href="#" class="logo__link">
                             <img class="logo__img" src="img/logo/tanner_logo.png" alt="tanner">
                         </a>
                     </div>
                     <div class="header__nav">
-                        <ul class="header__nav-list">
-                            <li class="nav__item"><a href="#" class="nav__link">navy salt</a></li>
-                            <li class="nav__item"><a href="#" class="nav__link">voyager</a></li>
-                            <li class="nav__item"><a href="#" class="nav__link header__nav-link--light">drifter</a></li>
-                            <li class="nav__item"><a href="#" class="nav__link header__nav-link--light">collection</a></li>
-                            <li class="nav__item"><a href="#" class="nav__link header__nav-link--light">contact</a></li>
+                        <ul class="header__nav-list" data-burger="navlist">
+                            <li class="nav__item"><a href="#topsection" class="nav__link">navy salt</a></li>
+                            <li class="nav__item"><a href="#voyagersection" class="nav__link">voyager</a></li>
+                            <li class="nav__item"><a href="#driftersection" class="nav__link nav__link--light">drifter</a></li>
+                            <li class="nav__item"><a href="#collection-section" class="nav__link nav__link--light">collection</a></li>
+                            <li class="nav__item"><a href="#footer" class="nav__link nav__link--light">contact</a></li>
                         </ul>
                     </div>
+                    <div class="burger-bg" data-burger="bg"></div>
                 </div>
             </div>   
        </header>
 
        <!-- TOP SECTION -->
        
-       <section class="topsection">
+       <section class="topsection" id="#topsection">
            <div class="container">
                <div class="topsection__wrap">
                     <div class="topdescr__wrap">
@@ -44,13 +47,19 @@
                         <a href="#" class="topdescr__link">Gear UP</a>
                     </div>  
                    <div class="gallery-wrap">
-                        <button class="arrow arrow__left"></button>
+                        <button class="arrow arrow__left" data-topgallerybtn="left"></button>
                         <ul class="gallery">
                             <li class="gallery__item">
-                                <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner bag slide-3">
+                                <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
+                            </li>
+                            <li class="gallery__item">
+                                <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
+                            </li>
+                            <li class="gallery__item">
+                                <img class="gallery__img" src="img/topgallery/home-slider-slide-3.jpg" alt="Tanner_bag_slide-3">
                             </li>
                         </ul>
-                        <button class="arrow__right"></button>
+                        <button class="arrow__right" data-topgallerybtn="right"></button>
                    </div>
                    
                    <!-- GALLERY SWICH -->
@@ -79,7 +88,7 @@
 
         <!-- VOYAGER SECTION -->
 
-        <section class="voyagersection">
+        <section class="voyagersection" id="#voyagersection">
             <div class="container">
                 <div class="section__wrap">
                     <div class="photo__wrap">
@@ -153,7 +162,7 @@
 
         <!-- DRIFTER SECTION -->
         
-        <section class="driftersection">
+        <section class="driftersection" id="#driftersection">
             <div class="container">
                 <div class="section__wrap section__wrap--driftersection">
                     <div class="descr__container descr__container--drift">
@@ -235,7 +244,7 @@
 
         <!-- COLECTION -->
 
-        <section class="collection-section">
+        <section class="collection-section" id="#collection-section">
             <div class="container">
                 <div class="collection__wrap">
                     <div class="collection__title-group">
@@ -374,14 +383,13 @@
    
    <!-- FOOTER -->
    
-    <footer class="footer">
+    <footer class="footer" id="#footer">
         <div class="container">
             <div class="footer__wrap">
                 <div class="logo-column">
                     <div class="img__wrap">
                         <img class="footer__logo" src="img/logo/tanner_logo.png" alt="tanner">
                     </div>
-                    <p class="copyright">&copy;tanner goods portland ore 2016</p>
                 </div>
                 <div class="nav-column">
                     <ul class="nav__list nav__list--footer">
@@ -410,7 +418,7 @@
                     <input class="subscribe-input" type="email" required=""> 
                     <button class="subscribe-submit" type="submit"></button>
                 </form>
-
+                <p class="copyright">&copy;tanner goods portland ore 2016</p>
             </div>
         </div>
     </footer>
@@ -420,6 +428,6 @@
     
     <!-- JS SCRIPT -->
    
-    <!-- <script src="js/main.min.js"></script> -->
+    <script src="js/main.min.js"></script>
 </body>
 </html>

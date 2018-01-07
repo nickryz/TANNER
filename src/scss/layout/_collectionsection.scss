@@ -384,6 +384,7 @@
 
                             @include tablet-pr {
                                 text-align: center;
+                                margin: 0;
                             }
                         }
                     }
@@ -438,7 +439,11 @@
 
 .collection__gallery-wrap {
     width: 100%;
-    padding: 36px 222px 0 48px
+    padding: 36px 222px 0 48px;
+
+     @include tablet-ls {
+        padding: 36px 0 0 0;
+    }
 }
     .collection__gallery-list {
         list-style: none;
@@ -446,9 +451,18 @@
         justify-content: space-between;
         padding: 0;
         font-size: 0;
+
+         @include tablet-ls {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
     }
         .collection__gallery-item {
             position: relative;
+
+            @include tablet-ls {
+                margin: 10px;
+            }
             
             
             &:not(:last-child) {
@@ -457,6 +471,10 @@
             
             &:last-child {
                 flex: 0 0 136px;
+ 
+                @include tablet-ls {
+                    display: none;
+                }
             }
 
             &:hover .collection__gallery-img {
@@ -465,12 +483,14 @@
             
             &:hover .blur {
                 opacity: 0.65;
+                z-index: 4;
             }
 
             &:hover .caption-icon {
                 width: 35%;
                 height: 35%;
                 opacity: 1;
+                z-index: 5;
             }
         }
 
@@ -486,6 +506,7 @@
                     background: black;
                     opacity: 0;
                     transition: opacity 0.3s ease-in-out;
+                    z-index: -1;
                 }
 
                 .caption-icon {
@@ -498,6 +519,7 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                     opacity: 0;
+                    z-index: -1;
                     transition: opacity 0.3s ease-in-out,
                                 width 0.3s ease-in-out,
                                 height 0.3s ease-in-out;
@@ -511,6 +533,7 @@
                     position: absolute;
                     bottom: 0;
                     z-index: -2;
+
 
                     &:before, &:after {
                         content: 'G';

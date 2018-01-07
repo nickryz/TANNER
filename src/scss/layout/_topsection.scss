@@ -54,7 +54,8 @@
 
             @include tablet-pr {
                 display: block;
-                margin: 0;
+                margin: 0 auto;
+                width: 300px;
                 padding: 10px 0;
                 background: $DarkPriceBorder;
             }
@@ -114,6 +115,8 @@
         right: 0;
         max-width: 783px;
         position: relative;
+        overflow: hidden;
+
 
         @include tablet-ls {
             max-width: 686px;
@@ -137,6 +140,7 @@
             width: 50px;
             display: none;
             opacity: 0.5;
+            z-index: 10;
             
 
             @include tablet-pr {
@@ -173,10 +177,14 @@
             padding: 0;
             margin: 0;
             list-style: none;
+            width: 9999px;
+            position: relative;
+            font-size: 0;
         }
 
             .gallery__item {
                 font-size: 0;
+                display: inline-block;
             }
 
                 .gallery__img {
