@@ -7,7 +7,8 @@
         overflow: hidden;
         position: relative;
     }
-        .gallerysection__gallery {
+    .gallerysection__gallery {
+            transition: transform 0.5s ease-in-out;
             list-style: none;
             font-size: 0;
             padding: 0;
@@ -16,18 +17,32 @@
             display: flex;
             align-items: flex-end;
             width: 130%;
+            min-height: 341px;
         }
 
             .gallerysection__item {
-                margin: 0 0 0 25px;
+                padding: 0 0 0 25px;
+                margin: 0;
                 opacity: 0.7;
                 position: relative;
-
+                min-width: 287px;
+                transition: all 0.5s ease-in-out;
+                
+                @include tablet-pr {
+                    min-width: 0;
+                    transition: none;
+                    padding: 0;
+                }
+                
                 &--active {
                     min-width: 366px;
                     opacity: 1;
-                }
 
+                    @include tablet-pr {
+                        min-width: 100%;
+                    }
+                }
+                
                 > img {
                     width: 100%;
                 }
@@ -41,6 +56,10 @@
                     border-radius: 3px;
                     width: 382px;
                     padding: 26.8px;
+                    
+                    @include tablet-pr {
+                        left: 0;
+                    }
                 }
 
                     .price {
@@ -88,6 +107,11 @@
         display: inline-block;
         position: relative;
         left: 60%;
+
+        @include tablet-pr {
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 
         .controls {
@@ -97,6 +121,11 @@
             justify-content: space-between;
             align-items: center;      
             position: relative;  
+
+            @include tablet-pr {
+                width: 300px;
+                height: 120px;
+            }
         }
 
             .number-window {
@@ -133,12 +162,21 @@
                 z-index: 99;
                 cursor: pointer;
                 outline: none;
+
+                @include tablet-pr {
+                    width: 20px;
+                    height: 32px;
+                }
             }
 
             .numbers__wrap {
                 position: absolute;
                 margin: 0;
                 transition: transform 0.3s ease-in-out;
+                
+                @include tablet-pr {
+                    display: none;
+                }
             }
 
                 .numbers__list {

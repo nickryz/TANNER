@@ -187,17 +187,18 @@
 
             .gallery__item {
                 min-width: 100%;
-                transition: transform 1s ease-in-out;
+                transition: transform 0.5s ease-in-out;
 
 
             }
             
             .rotate {
                 transform-origin: 0 0;
-                transform: rotate(30deg);
+                transform: rotate(10deg);
             }
 
             .down {
+                // transform-origin: 100% 20%;
                 transform: translateY(+100%);
             }
 

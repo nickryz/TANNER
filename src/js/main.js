@@ -84,6 +84,7 @@ SCROLL MENU
             var scroll = setInterval(function () {
                 var currentPosition = window.pageYOffset;
                
+               
                 if (scrollHeight >= sectionPosition + window.innerHeight && sectionPosition > window.innerHeight) {
                     scrollTo(0, currentPosition + 50);
                     if (currentPosition >= sectionPosition) {
@@ -93,7 +94,7 @@ SCROLL MENU
                     clearInterval(scroll);
                     return;
                 } else {
-                    scrollTo(0, currentPosition + 50)
+                    scrollTo(0, currentPosition + 50);
                     if (currentPosition >= scrollHeight - window.innerHeight) {
                         clearInterval(scroll);
                     }
@@ -176,7 +177,7 @@ TOP GALLERY
             activeNumber = document.querySelector('[href^="#' + swichPosition + '"' + ']').parentElement;
             if (swichPosition > 1) {
                     --swichPosition;
-                    console.log(swichPosition);
+                    
                     
                     activeNumber.classList.remove('swich__number--active');
                     activeNumber.previousElementSibling.classList.add('swich__number--active');
@@ -190,6 +191,8 @@ TOP GALLERY
                     swicher.style.transform = 'translate(0,' + swichStep * (swichPosition -1) + 'px' + ')';
                     swicher.firstElementChild.innerHTML = '0' + swichPosition;
                 } 
+
+                console.log(swichPosition);
             }
         }
 
@@ -198,23 +201,7 @@ TOP GALLERY
 
         function mooveSlide() {
             currentSlide = document.querySelector('[data-topgallery="' + swichPosition + '"' + ']');
-           
-            setTimeout(() => {
-                currentSlide.previousElementSibling.classList.add('rotate');
-
-                setTimeout(() => {
-                    currentSlide.previousElementSibling.classList.add('down');
-                }, 1000);
-                
-                setTimeout(() => {
-                    slideList.style.transform = 'translate(' + -currentSlide.offsetWidth * (swichPosition - 1) + 'px' + ',0)';
-
-                }, 1500);
-            }, 100);
-
-
-
-            
+            slideList.style.transform = 'translate(' + -currentSlide.offsetWidth * (swichPosition - 1) + 'px' + ',0)';
         }
 
 
@@ -288,7 +275,8 @@ OPEN BIG IMG
             priceBox: document.querySelector('.price-box'),
             activePosition: 1,
             numberWidth: 40,
-            numElemWhitPrice: 3
+            numElemWithPrice: 3,
+            dataname: 'data-firstgallery'
         }
         
         // second gallery
@@ -296,12 +284,16 @@ OPEN BIG IMG
         var secondGallery = {
             numbersWrap: document.getElementById('numbers__wrap--second'),
             bigNumWindow: document.getElementById('number-window--second'),
+            slidesWrap: document.getElementById('gallerysection--second'),
+            priceBox: document.querySelector('#price-box'),
             activePosition: 1,
             numberWidth: 40,
+            numElemWithPrice: 3,
+            dataname: 'data-secondgallery'
         }
         
         
-        rightBtn.addEventListener('click', function () { mooveRight(firstGallery) });
+        rightBtn.addEventListener('click',  function () { mooveRight(firstGallery) });
         leftBtn.addEventListener('click', function () { mooveLeft(firstGallery) });
 
         rightBtn2.addEventListener('click', function () { mooveRight(secondGallery) });
@@ -323,6 +315,32 @@ OPEN BIG IMG
                 p.activeNumber.classList.add(p.activeNumber.classList[0] + action);
                 p.numbersWrap.style.transform = 'translateX(' + -p.numberWidth * (p.activePosition - 1) + 'px' + ')';
                 p.bigNumWindow.firstElementChild.innerHTML = '0' + p.activePosition;
+
+                mooveClipRight(p.activePosition, p);
+
+            function mooveClipRight(activePosition, p) {
+
+                var currentSlide = document.querySelector('[' + p.dataname + '="' + activePosition + '"' + ']');
+                var firstSlide = p.slidesWrap.firstElementChild;
+                var priceBoxEl = p.priceBox.parentElement.removeChild(p.priceBox);
+                var newElementWithPrice = p.slidesWrap.children[p.numElemWithPrice]
+                var removedSlide;
+
+
+                setTimeout(() => {
+                    removedSlide = p.slidesWrap.removeChild(firstSlide);
+                    p.slidesWrap.appendChild(removedSlide);
+                    p.slidesWrap.style.transition = 'none';
+                    p.slidesWrap.style.transform = 'translateX(' + 0 + 'px' + ')';
+                }, 500);
+
+                p.slidesWrap.style.transform = 'translateX(' + -currentSlide.offsetWidth + 'px' + ')';
+                newElementWithPrice.appendChild(priceBoxEl);
+                newElementWithPrice.classList.add(newElementWithPrice.classList[0] + action);
+                newElementWithPrice.previousElementSibling.classList.remove(newElementWithPrice.previousElementSibling.classList[0] + action)
+                p.slidesWrap.style.transition = 'transform 0.5s ease-in-out';
+            }
+
         }
 
 
@@ -342,34 +360,36 @@ OPEN BIG IMG
                 p.numbersWrap.style.transform = 'translateX(' + -p.numberWidth * (p.activePosition - 1) + 'px' + ')';
                 p.bigNumWindow.firstElementChild.innerHTML = '0' + p.activePosition;
                 
-                mooveClip(p.activePosition, firstGallery)
+                mooveClipLeft(p.activePosition, p);
+                
+                function mooveClipLeft(activePosition, p) {
+        
+                    var currentSlide = document.querySelector('[' + p.dataname + '="' + activePosition + '"' + ']');
+                    var lastSlide = p.slidesWrap.lastElementChild;  
+                    var removedSlide = p.slidesWrap.removeChild(lastSlide);
+                    var priceBoxEl = p.priceBox.parentElement.removeChild(p.priceBox);
+                    
+                    p.slidesWrap.insertBefore(removedSlide, p.slidesWrap.firstElementChild);
+                    var newElementWithPrice = p.slidesWrap.children[p.numElemWithPrice - 1];
+        
+                    p.slidesWrap.style.transition = 'none'; 
+                    p.slidesWrap.style.transform = 'translateX(' + -currentSlide.offsetWidth + 'px' + ')'; 
+                    
+                    setTimeout(() => {
+                        p.slidesWrap.style.transition = 'transform 0.5s ease-in-out';
+                        p.slidesWrap.style.transform = 'translateX(' + 0 + 'px' + ')';
+                    }, 20);
+                    
+                    setTimeout(() => {
+                        newElementWithPrice.classList.add(newElementWithPrice.classList[0] + action);
+                        newElementWithPrice.nextElementSibling.classList.remove(newElementWithPrice.previousElementSibling.classList[0] + action)
+                        newElementWithPrice.appendChild(priceBoxEl);
+                        
+                    }, 20);
+                }
         }
 
-        function mooveClip(activePosition, p) {
-
-            var currentSlide = document.querySelector('[data-firstgallery="' + activePosition + '"' + ']');
-            // p.slidesWrap.style.transform = 'translate(' + -p.slidesWrap.children[1].offsetWidth * (activePosition - 1) + 'px' + ',0)';
-            
-            // var lastSlide = currentSlide.parentElement.lastElementChild;
-            
-            // for(var i = 1; i < activePosition; i++) {
-                var firstSlide = p.slidesWrap.firstElementChild;
-                var removedSlide = p.slidesWrap.removeChild(firstSlide);
-                p.slidesWrap.appendChild(removedSlide);
-                var priceBoxEl = p.priceBox.parentElement.removeChild(p.priceBox);
-                p.slidesWrap.children[p.numElemWhitPrice - 1].appendChild(priceBoxEl);
-                p.slidesWrap.children[p.numElemWhitPrice - 1].classList.add(p.slidesWrap.children[p.numElemWhitPrice - 1].classList[0] + action);
-                p.slidesWrap.children[p.numElemWhitPrice].nextElementSibling.classList.remove(p.slidesWrap.children[p.numElemWhitPrice].classList[0] + action);
-
-
-            
-            console.log(p.slidesWrap.children[p.numElemWhitPrice - 1])
-            console.log(p.slidesWrap.children[p.numElemWhitPrice])
-            // }
-
-
-
-        }
+        
 
 
 
