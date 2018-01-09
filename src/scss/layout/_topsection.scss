@@ -176,21 +176,32 @@
 
 
         .gallery {
+            display: flex;
             padding: 0;
             margin: 0;
             list-style: none;
-            width: 9999px;
             position: relative;
             font-size: 0;
             transition: transform 0.3s ease-in-out;
         }
 
             .gallery__item {
-                font-size: 0;
-                display: inline-block;
+                min-width: 100%;
+                transition: transform 1s ease-in-out;
+
+
+            }
+            
+            .rotate {
+                transform-origin: 0 0;
+                transform: rotate(30deg);
             }
 
-                .gallery__img {
-                    width: 100%;
-                }
+            .down {
+                transform: translateY(+100%);
+            }
+
+            .gallery__img {
+                width: 100%;
+            }
             

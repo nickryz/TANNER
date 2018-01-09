@@ -29,6 +29,7 @@ BURGER MENU
     
     burgerBtn.addEventListener('click', toggleclass);
     burgerBg.addEventListener('click', toggleclass);
+    
 
 
     function toggleclass() {
@@ -197,14 +198,194 @@ TOP GALLERY
 
         function mooveSlide() {
             currentSlide = document.querySelector('[data-topgallery="' + swichPosition + '"' + ']');
-            slideList.style.transform = 'translate(' + -currentSlide.offsetWidth * (swichPosition - 1) + 'px' + ',0)';
+           
+            setTimeout(() => {
+                currentSlide.previousElementSibling.classList.add('rotate');
+
+                setTimeout(() => {
+                    currentSlide.previousElementSibling.classList.add('down');
+                }, 1000);
+                
+                setTimeout(() => {
+                    slideList.style.transform = 'translate(' + -currentSlide.offsetWidth * (swichPosition - 1) + 'px' + ',0)';
+
+                }, 1500);
+            }, 100);
+
+
+
+            
         }
 
 
+
+
+
+
+
+/*
+*
+*
+OPEN BIG IMG
+*
+*
+*/
+
+
+    var bigImgWrapper = document.querySelector('.bigImg_wrapper');
+    var bigImg = bigImgWrapper.querySelector('img');
+    var smallImgContainers = document.querySelectorAll('.collection__gallery-item');
+
+
+    for(var i = 0; i < (smallImgContainers.length - 1); i++) {
+        smallImgContainers[i].addEventListener('click', showBigImg);
+    }
+
+    bigImgWrapper.addEventListener('click', hideBigImg);
+
+
+        function showBigImg(e) {
+            e.preventDefault();
+            var bigImgLink = this.dataset.bigimglink;
+            bigImg.src = bigImgLink;
+            bigImgWrapper.classList.add(bigImgWrapper.className + action);
+        }
+
+        function hideBigImg(e) {
+            e.preventDefault();
+            this.classList.remove(bigImgWrapper.classList[0] + action)
+        }
+
+
+
     })(); 
+
+
+
+    /*
+    *
+    * 
+    CARUSELL GALLERY
+    * 
+    */
+
+
+    ; (function () {
+        "use strict";
+        var action = "--active"
+        
+        var leftBtn = document.getElementById('leftBtn--first');
+        var rightBtn = document.getElementById('rightBtn--first');
+        var leftBtn2 = document.getElementById('leftBtn--second');
+        var rightBtn2 = document.getElementById('rightBtn--second');
+        
+        // first gallery 
+        
+        var firstGallery = {
+            numbersWrap: document.getElementById('numbers__wrap--first'),
+            bigNumWindow: document.getElementById('number-window--first'),
+            slidesWrap: document.getElementById('gallerysection--first'),
+            priceBox: document.querySelector('.price-box'),
+            activePosition: 1,
+            numberWidth: 40,
+            numElemWhitPrice: 3
+        }
+        
+        // second gallery
+
+        var secondGallery = {
+            numbersWrap: document.getElementById('numbers__wrap--second'),
+            bigNumWindow: document.getElementById('number-window--second'),
+            activePosition: 1,
+            numberWidth: 40,
+        }
+        
+        
+        rightBtn.addEventListener('click', function () { mooveRight(firstGallery) });
+        leftBtn.addEventListener('click', function () { mooveLeft(firstGallery) });
+
+        rightBtn2.addEventListener('click', function () { mooveRight(secondGallery) });
+        leftBtn2.addEventListener('click', function () { mooveLeft(secondGallery) });
+
+
+        function mooveRight(p){
+            ++p.activePosition;
+                        
+            p.activeNumber = p.numbersWrap.querySelector('[data-position="' + p.activePosition + '"' + ']');
+
+            if (!p.activeNumber) {
+                p.activePosition = 1;
+                p.activeNumber = p.numbersWrap.querySelector('[data-position="' + p.activePosition + '"' + ']');
+                p.activeNumber.parentElement.lastElementChild.classList.remove(p.activeNumber.classList[0] + action);
+            } else {
+                p.activeNumber.previousElementSibling.classList.remove(p.activeNumber.classList[0] + action);
+            }
+                p.activeNumber.classList.add(p.activeNumber.classList[0] + action);
+                p.numbersWrap.style.transform = 'translateX(' + -p.numberWidth * (p.activePosition - 1) + 'px' + ')';
+                p.bigNumWindow.firstElementChild.innerHTML = '0' + p.activePosition;
+        }
+
+
+        function mooveLeft(p) {
+            --p.activePosition;
+            p.activeNumber = p.numbersWrap.querySelector('[data-position="' + p.activePosition + '"' + ']');
+
+            if (!p.activeNumber) {
+                p.activePosition = p.numbersWrap.firstElementChild.children.length;
+                p.activeNumber = p.numbersWrap.querySelector('[data-position="' + p.activePosition + '"' + ']');
+                p.activeNumber.parentElement.firstElementChild.classList.remove(p.activeNumber.classList[0] + action);
+            } else {
+                p.activeNumber.nextElementSibling.classList.remove(p.activeNumber.classList[0] + action);
+            }
+
+                p.activeNumber.classList.add(p.activeNumber.classList[0] + action);
+                p.numbersWrap.style.transform = 'translateX(' + -p.numberWidth * (p.activePosition - 1) + 'px' + ')';
+                p.bigNumWindow.firstElementChild.innerHTML = '0' + p.activePosition;
+                
+                mooveClip(p.activePosition, firstGallery)
+        }
+
+        function mooveClip(activePosition, p) {
+
+            var currentSlide = document.querySelector('[data-firstgallery="' + activePosition + '"' + ']');
+            // p.slidesWrap.style.transform = 'translate(' + -p.slidesWrap.children[1].offsetWidth * (activePosition - 1) + 'px' + ',0)';
+            
+            // var lastSlide = currentSlide.parentElement.lastElementChild;
+            
+            // for(var i = 1; i < activePosition; i++) {
+                var firstSlide = p.slidesWrap.firstElementChild;
+                var removedSlide = p.slidesWrap.removeChild(firstSlide);
+                p.slidesWrap.appendChild(removedSlide);
+                var priceBoxEl = p.priceBox.parentElement.removeChild(p.priceBox);
+                p.slidesWrap.children[p.numElemWhitPrice - 1].appendChild(priceBoxEl);
+                p.slidesWrap.children[p.numElemWhitPrice - 1].classList.add(p.slidesWrap.children[p.numElemWhitPrice - 1].classList[0] + action);
+                p.slidesWrap.children[p.numElemWhitPrice].nextElementSibling.classList.remove(p.slidesWrap.children[p.numElemWhitPrice].classList[0] + action);
+
+
+            
+            console.log(p.slidesWrap.children[p.numElemWhitPrice - 1])
+            console.log(p.slidesWrap.children[p.numElemWhitPrice])
+            // }
+
+
+
+        }
+
+
+
+    })(); 
+    
+
+
+
+
+
+
+
+
+
+
 }
-
-
 
 
 
