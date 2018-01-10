@@ -16,13 +16,9 @@ window.addEventListener('scroll', showSvg)
         var middleOfClientWindow = window.pageYOffset + windowHeight/2;
         
 
-        if (svgPosition - 70 <= middleOfClientWindow && svgPosition + 1700 >= middleOfClientWindow)  {
+        if (svgPosition - 70 <= middleOfClientWindow)  {
             svg.style.animationName = 'draw';
-        } else {
-            svg.style.animationName = '';
-        }
-        console.log(svgPosition)
-        console.log(middleOfClientWindow)
+        } 
     }
 
 /* 
@@ -284,6 +280,23 @@ OPEN BIG IMG
         var rightBtn = document.getElementById('rightBtn--first');
         var leftBtn2 = document.getElementById('leftBtn--second');
         var rightBtn2 = document.getElementById('rightBtn--second');
+        var smallSlides = document.querySelectorAll('.gallerysection__item');
+        var smallSlidesWidth = findMinWidth(smallSlides);
+
+        function findMinWidth(p) {
+            var minWidth = 0;
+            p.forEach(function (e) {
+                var width = e.offsetWidth;
+
+                if(minWidth > width || minWidth == 0) {
+                    minWidth = width;
+                } 
+            });
+            return minWidth;
+        }
+
+        
+        
         
         // first gallery 
         
@@ -312,11 +325,11 @@ OPEN BIG IMG
         }
         
         
-        rightBtn.addEventListener('click',  function () { mooveRight(firstGallery) });
-        leftBtn.addEventListener('click', function () { mooveLeft(firstGallery) });
+        rightBtn.addEventListener('click',  function () { setTimeout( function () {mooveRight(firstGallery)}, 300) });
+        leftBtn.addEventListener('click', function () { setTimeout(function () {mooveLeft(firstGallery)}, 300) });
 
-        rightBtn2.addEventListener('click', function () { mooveRight(secondGallery) });
-        leftBtn2.addEventListener('click', function () { mooveLeft(secondGallery) });
+        rightBtn2.addEventListener('click', function () { setTimeout(function () { mooveLeft(secondGallery) }, 300) });
+        leftBtn2.addEventListener('click', function () { setTimeout(function () { mooveLeft(secondGallery) }, 300) });
 
 
         function mooveRight(p){
@@ -353,7 +366,7 @@ OPEN BIG IMG
                     p.slidesWrap.style.transform = 'translateX(' + 0 + 'px' + ')';
                 }, 500);
 
-                p.slidesWrap.style.transform = 'translateX(' + -currentSlide.offsetWidth + 'px' + ')';
+                p.slidesWrap.style.transform = 'translateX(' + -smallSlidesWidth + 'px' + ')';
                 newElementWithPrice.appendChild(priceBoxEl);
                 newElementWithPrice.classList.add(newElementWithPrice.classList[0] + action);
                 newElementWithPrice.previousElementSibling.classList.remove(newElementWithPrice.previousElementSibling.classList[0] + action)
@@ -392,7 +405,7 @@ OPEN BIG IMG
                     var newElementWithPrice = p.slidesWrap.children[p.numElemWithPrice - 1];
         
                     p.slidesWrap.style.transition = 'none'; 
-                    p.slidesWrap.style.transform = 'translateX(' + -currentSlide.offsetWidth + 'px' + ')'; 
+                    p.slidesWrap.style.transform = 'translateX(' + -smallSlidesWidth + 'px' + ')'; 
                     
                     setTimeout(() => {
                         p.slidesWrap.style.transition = 'transform 0.5s ease-in-out';
