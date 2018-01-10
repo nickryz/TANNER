@@ -1,10 +1,29 @@
-
+// import "babel-polyfill";
 window.addEventListener('DOMContentLoaded', init);
 
 // import $ from 'jquery';
 
 function init () {
     
+
+    
+window.addEventListener('scroll', showSvg)  
+    function showSvg(e) {
+        var svg = document.querySelector('.svg');
+        var actualPosition = window.pageYOffset;
+        var svgPosition = svg.getBoundingClientRect().top + actualPosition;
+        var windowHeight = window.innerHeight;
+        var middleOfClientWindow = window.pageYOffset + windowHeight/2;
+        
+
+        if (svgPosition - 70 <= middleOfClientWindow && svgPosition + 1700 >= middleOfClientWindow)  {
+            svg.style.animationName = 'draw';
+        } else {
+            svg.style.animationName = '';
+        }
+        console.log(svgPosition)
+        console.log(middleOfClientWindow)
+    }
 
 /* 
 *
