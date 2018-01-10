@@ -328,7 +328,7 @@ OPEN BIG IMG
         rightBtn.addEventListener('click',  function () { setTimeout( function () {mooveRight(firstGallery)}, 300) });
         leftBtn.addEventListener('click', function () { setTimeout(function () {mooveLeft(firstGallery)}, 300) });
 
-        rightBtn2.addEventListener('click', function () { setTimeout(function () { mooveRight(secondGallery) }, 300) });
+        rightBtn2.addEventListener('click', function () { setTimeout(function () { mooveRight   (secondGallery) }, 300) });
         leftBtn2.addEventListener('click', function () { setTimeout(function () { mooveLeft(secondGallery) }, 300) });
 
 
